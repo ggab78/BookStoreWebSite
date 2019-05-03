@@ -5,19 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class Users {
-
 
 	private Integer userId;
 	private String email;
 	private String fullName;
 	private String password;
-
-	@Column(name = "user_id")
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	public Integer getUserId() {
 		return userId;
 	}
@@ -38,6 +39,7 @@ public class Users {
 	public String getFullName() {
 		return fullName;
 	}
+
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
