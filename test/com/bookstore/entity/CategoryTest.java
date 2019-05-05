@@ -3,27 +3,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.bookstore.entity.Users;
+import com.bookstore.entity.Category;
 
-public class UsersTest {
+public class CategoryTest {
 
 	public static void main(String[] args) {
 		
-		Users user1 = new Users();
-		user1.setFullName("GabGam");
-		user1.setEmail("gg@gmail.com");
-		user1.setPassword("new pass");
+		Category category = new Category("nowa");
+
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebSite");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();
-		entityManager.persist(user1);
+		entityManager.persist(category);
 		entityManager.getTransaction().commit();
 		
 		entityManager.close();
 		entityManagerFactory.close();
 		
-		System.out.println("A User object was persisted");
+		System.out.println("A Category object was persisted");
 	}
 }
