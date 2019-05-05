@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="bookstoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.bookstore.entity.Customer" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="customer">
+        <id name="customerId" type="java.lang.Integer">
+            <column name="customer_id"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="email" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fullName" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="full_name" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="address" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="address" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="city" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="country" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="country" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="phoneNumber" optimistic-lock="true" type="string" unique="false">
+            <column length="15" name="phone_number" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="zipCode" optimistic-lock="true" type="string" unique="false">
+            <column length="24" name="zip_code" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="16" name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="registerDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="register_date" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="reviews" optimistic-lock="true" sort="unsorted" table="review">
+            <key on-delete="noaction">
+                <column name="customer_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.bookstore.entity.Review" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="bookOrders" optimistic-lock="true" sort="unsorted" table="book_order">
+            <key on-delete="noaction">
+                <column name="customer_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.bookstore.entity.BookOrder" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

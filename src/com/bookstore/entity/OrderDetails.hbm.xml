@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="bookstoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.bookstore.entity.OrderDetails" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="order_details">
+        <composite-id class="com.bookstore.entity.OrderDetailsId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="orderId" type="int">
+                <column name="order_id"/>
+            </key-property>
+            <key-property name="bookId" type="int">
+                <column name="book_id"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.bookstore.entity.Book" embed-xml="true" fetch="select" insert="false" name="book" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="book_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.bookstore.entity.BookOrder" embed-xml="true" fetch="select" insert="false" name="bookOrder" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="order_id" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="quantity" optimistic-lock="true" type="int" unique="false">
+            <column name="quantity" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="subTotal" optimistic-lock="true" type="float" unique="false">
+            <column name="sub_total" not-null="true" precision="12" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

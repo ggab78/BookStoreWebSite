@@ -9,9 +9,9 @@ public class UsersTest {
 	public static void main(String[] args) {
 		
 		Users user1 = new Users();
-		user1.setFullName("Gabriel");
+		user1.setFullName("GabGam");
 		user1.setEmail("gg@gmail.com");
-		user1.setPassword("password");
+		user1.setPassword("new pass");
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebSite");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -25,5 +25,4 @@ public class UsersTest {
 		
 		System.out.println("A User object was persisted");
 	}
-
 }
