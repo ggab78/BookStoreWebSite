@@ -1,5 +1,5 @@
 package com.bookstore.entity;
-// Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final
+// Generated May 5, 2019, 11:32:51 PM by Hibernate Tools 5.4.2.Final
 
 import java.util.Date;
 

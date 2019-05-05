@@ -1,5 +1,5 @@
 package com.bookstore.entity;
-// Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final
+// Generated May 5, 2019, 11:32:51 PM by Hibernate Tools 5.4.2.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -20,8 +20,8 @@ public class Customer implements java.io.Serializable {
 	private String zipCode;
 	private String password;
 	private Date registerDate;
-	private Set reviews = new HashSet(0);
-	private Set bookOrders = new HashSet(0);
+	private Set<Review> reviews = new HashSet<>(0);
+	private Set<BookOrder> bookOrders = new HashSet<>(0);
 
 	public Customer() {
 	}
@@ -40,7 +40,7 @@ public class Customer implements java.io.Serializable {
 	}
 
 	public Customer(String email, String fullName, String address, String city, String country, String phoneNumber,
-			String zipCode, String password, Date registerDate, Set reviews, Set bookOrders) {
+			String zipCode, String password, Date registerDate, Set<Review> reviews, Set<BookOrder> bookOrders) {
 		this.email = email;
 		this.fullName = fullName;
 		this.address = address;
@@ -134,19 +134,19 @@ public class Customer implements java.io.Serializable {
 		this.registerDate = registerDate;
 	}
 
-	public Set getReviews() {
+	public Set<Review> getReviews() {
 		return this.reviews;
 	}
 
-	public void setReviews(Set reviews) {
+	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
 
-	public Set getBookOrders() {
+	public Set<BookOrder> getBookOrders() {
 		return this.bookOrders;
 	}
 
-	public void setBookOrders(Set bookOrders) {
+	public void setBookOrders(Set<BookOrder> bookOrders) {
 		this.bookOrders = bookOrders;
 	}
 

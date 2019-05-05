@@ -1,5 +1,5 @@
 package com.bookstore.entity;
-// Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final
+// Generated May 5, 2019, 11:32:51 PM by Hibernate Tools 5.4.2.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -20,8 +20,8 @@ public class Book implements java.io.Serializable {
 	private float price;
 	private Date publishDate;
 	private Date lastUpdateTime;
-	private Set reviews = new HashSet(0);
-	private Set orderDetailses = new HashSet(0);
+	private Set<Review> reviews = new HashSet<>(0);
+	private Set<OrderDetails> orderDetailses = new HashSet<>(0);
 
 	public Book() {
 	}
@@ -40,7 +40,7 @@ public class Book implements java.io.Serializable {
 	}
 
 	public Book(Category category, String title, String author, String description, String isbn, byte[] image,
-			float price, Date publishDate, Date lastUpdateTime, Set reviews, Set orderDetailses) {
+			float price, Date publishDate, Date lastUpdateTime, Set<Review> reviews, Set<OrderDetails> orderDetailses) {
 		this.category = category;
 		this.title = title;
 		this.author = author;
@@ -134,19 +134,19 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	public Set getReviews() {
+	public Set<Review> getReviews() {
 		return this.reviews;
 	}
 
-	public void setReviews(Set reviews) {
+	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
 
-	public Set getOrderDetailses() {
+	public Set<OrderDetails> getOrderDetailses() {
 		return this.orderDetailses;
 	}
 
-	public void setOrderDetailses(Set orderDetailses) {
+	public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
 		this.orderDetailses = orderDetailses;
 	}
 

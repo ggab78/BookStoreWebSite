@@ -1,5 +1,5 @@
 package com.bookstore.entity;
-// Generated May 5, 2019, 10:22:38 PM by Hibernate Tools 5.4.2.Final
+// Generated May 5, 2019, 11:32:51 PM by Hibernate Tools 5.4.2.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class BookOrder implements java.io.Serializable {
 	private String paymentMethod;
 	private float orderTotal;
 	private String orderStatus;
-	private Set orderDetailses = new HashSet(0);
+	private Set<OrderDetails> orderDetailses = new HashSet<>(0);
 
 	public BookOrder() {
 	}
@@ -37,7 +37,7 @@ public class BookOrder implements java.io.Serializable {
 	}
 
 	public BookOrder(Customer customer, Date orderDate, String shippingAddress, String recipientName,
-			String recipientPhone, String paymentMethod, float orderTotal, String orderStatus, Set orderDetailses) {
+			String recipientPhone, String paymentMethod, float orderTotal, String orderStatus, Set<OrderDetails> orderDetailses) {
 		this.customer = customer;
 		this.orderDate = orderDate;
 		this.shippingAddress = shippingAddress;
@@ -121,11 +121,11 @@ public class BookOrder implements java.io.Serializable {
 		this.orderStatus = orderStatus;
 	}
 
-	public Set getOrderDetailses() {
+	public Set<OrderDetails> getOrderDetailses() {
 		return this.orderDetailses;
 	}
 
-	public void setOrderDetailses(Set orderDetailses) {
+	public void setOrderDetailses(Set<OrderDetails> orderDetailses) {
 		this.orderDetailses = orderDetailses;
 	}
 
