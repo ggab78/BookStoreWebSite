@@ -4,10 +4,12 @@ import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
+
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,13 +19,20 @@ public class UserDAOTest {
 
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager;
-	private static UserDAO userDAO;
-	
+	private UserDAO userDAO;
+	private Users user;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebSite");
 		entityManager = entityManagerFactory.createEntityManager();
+
+	}
+
+	@Before
+	public void setUpBeforeEachTest() throws Exception {
 		userDAO = new UserDAO(entityManager);
+		user = new Users();
 	}
 
 	@AfterClass
@@ -34,34 +43,68 @@ public class UserDAOTest {
 
 	@Test
 	public void testCreate() {
-		Users user = new Users();
+
 		user.setFullName("GabGam");
 		user.setEmail("gg@gmail.com");
-		user.setPassword("new pass");
-		
+		user.setPassword("new passssss");
+
 		user = userDAO.create(user);
-		assertTrue(user.getUserId()>0);
+		assertTrue(user.getUserId() > 0);
 	}
-	
-	@Test(expected = PersistenceException.class)
-	public void testCreateEmptyUser() {
-		Users user = new Users();
-		user = userDAO.create(user);
+
+	@Test
+	public void testFind() {
+
+		user.setUserId(2);
+		Users foundUser = userDAO.find(user.getClass(), user.getUserId());
+		assertNotNull(foundUser);
+		assertNotNull(foundUser.getEmail());
+		assertTrue(foundUser.getUserId() == 2);
 	}
-	
+
+	@Test
+	public void testFindNotFound() {
+
+		user.setUserId(10000001);
+		Users foundUser = userDAO.find(user.getClass(), user.getUserId());
+		assertNull(foundUser);
+	}
+
+//	@Test(expected = PersistenceException.class)
+//	public void testCreateEmptyUser() {
+//		try {
+//			user = userDAO.create(user);
+//		} catch (PersistenceException e) {
+//			throw e;
+//		}
+//
+//	}
+
 	@Test
 	public void testUpdate() {
-		Users user = new Users();
 		user.setUserId(1);
-		user.setFullName("vvv");
+		user.setFullName("vvv_xxx");
 		user.setEmail("gg@gmail.com");
 		user.setPassword("new pass");
-		userDAO.update(user);
+		Users updatedUser = userDAO.update(user);
 
-		user = entityManager.find(Users.class, 1);
-		assertEquals("vvv", user.getFullName());
-		
+		user = entityManager.find(user.getClass(), 1);
+		assertEquals("vvv_xxx", updatedUser.getFullName());
+
 	}
-	
-	
+
+	@Test
+	public void testDelete() {
+		user.setUserId(1);
+		userDAO.delete(user.getClass(), user.getUserId());
+		user = userDAO.find(user.getClass(), user.getUserId());
+		assertNull(user);
+	}
+
+	@Test(expected = Exception.class)
+	public void testDeleteNotExistingUser() {
+		user.setUserId(101);
+		userDAO.delete(user.getClass(), user.getUserId());
+	}
+
 }
